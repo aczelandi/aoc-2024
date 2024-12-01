@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "aoc2024"
+version = "0.1.0"
+description = "Advent of code 2024"
+authors = ["Andi Aczel <aczelandi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.4"
+mypy = "^1.13.0"
+pytest = "^8.3.3"
+pytest-cov = "^6.0.0"
+taskipy = "^1.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+lint.select = ["E", "F", "W", "C", "N"]
+target-version = "py311"
+
+[tool.taskipy.tasks]
+fix = "ruff check --fix"
+lint = "ruff check"
+test = "pytest --cov=aoc2024 --cov-fail-under=80 tests"
+check = "task lint && task test"
